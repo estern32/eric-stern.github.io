@@ -14,7 +14,9 @@
  */
 function length(string) {
     // YOUR CODE BELOW HERE //
-    
+
+    //return length of string
+    return string.length;
 
 
     // YOUR CODE ABOVE HERE //
@@ -25,8 +27,8 @@ function length(string) {
  */
 function toLowerCase(string) {
     // YOUR CODE BELOW HERE //
-
-
+    //return a new string forced to lowercase
+    return string.toLowerCase();
 
     // YOUR CODE ABOVE HERE //
 }
@@ -36,7 +38,8 @@ function toLowerCase(string) {
  */
 function toUpperCase(string) {
     // YOUR CODE BELOW HERE //
-
+    //return a new string forced to uppercase
+    return string.toUpperCase();
 
 
     // YOUR CODE ABOVE HERE //
