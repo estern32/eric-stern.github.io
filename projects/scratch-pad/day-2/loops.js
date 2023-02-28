@@ -12,7 +12,12 @@
  */
 function printArrayValues(array) {
   // YOUR CODE BELOW HERE //
-  
+  //loop forward over the array
+  for (i = 0; i < array.length; i++) {
+    //print array's values
+    console.log(array[i]);
+  }
+}
   
   
   

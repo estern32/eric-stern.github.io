@@ -41,7 +41,6 @@ function toUpperCase(string) {
     //return a new string forced to uppercase
     return string.toUpperCase();
 
-
     // YOUR CODE ABOVE HERE //
 }
 
@@ -60,6 +59,14 @@ function toUpperCase(string) {
  */
 function toDashCase(string) {
     // YOUR CODE BELOW HERE //
+    //force string to lower case
+    var lowerCase = string.toLowerCase();
+    //turn string to array with .split()
+    var splitString = lowerCase.split(' ');
+    //turn array to string with dash-case
+    var joinedString = splitString.join('-');
+    //return joinedString
+    return joinedString;
 
 
 
@@ -80,7 +87,7 @@ function toDashCase(string) {
  */
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE //
-
+    
     
 
     // YOUR CODE ABOVE HERE //
@@ -113,7 +120,8 @@ function endsWith(string, char) {
  */
 function concat(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+    //return the strings concatenated into one
+    return stringOne + stringTwo;
 
 
     // YOUR CODE ABOVE HERE //
@@ -132,7 +140,6 @@ function concat(stringOne, stringTwo) {
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     var args = Array.from(arguments);
-
 
     // YOUR CODE ABOVE HERE //
 }
