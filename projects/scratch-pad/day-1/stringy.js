@@ -87,7 +87,13 @@ function toDashCase(string) {
  */
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE //
-    
+    //if the string begins with char return true
+    var word = string;
+    if (word[0] = char) {
+        return true;
+    } else {
+        return false;
+    }
     
 
     // YOUR CODE ABOVE HERE //
@@ -107,7 +113,14 @@ function beginsWith(string, char) {
  */
 function endsWith(string, char) {
     // YOUR CODE BELOW HERE //
-
+    //return true if string end with the character
+    var word = string;
+    if (word[word.length - 1] === char) {
+        return true;
+    //otherwise return false
+    } else {
+        return false;
+    }
 
 
     // YOUR CODE ABOVE HERE //
@@ -139,11 +152,13 @@ function concat(stringOne, stringTwo) {
  */
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-    var args = Array.from(arguments);
-
+    var args = Array.from(arguments); // [stringOne, stringTwo]
+    //create variable joining the strings
+    var joined = args.join('');
+    //return variable
+    return joined;
     // YOUR CODE ABOVE HERE //
 }
-
 /**
  * Given two Strings, return the longest of the two.
  *
