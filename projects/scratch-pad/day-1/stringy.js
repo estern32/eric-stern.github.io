@@ -87,10 +87,14 @@ function toDashCase(string) {
  */
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE //
+    //turn string to lower case
+    var lowerString = string.toLowerCase();
+    //turn char to lower case
+    var lowerChar = char.toLowerCase();
     //if the string begins with char return true
-    var word = string;
-    if (word[0] = char) {
+    if (lowerString[0] === lowerChar) {
         return true;
+    //else return false
     } else {
         return false;
     }
@@ -113,11 +117,14 @@ function beginsWith(string, char) {
  */
 function endsWith(string, char) {
     // YOUR CODE BELOW HERE //
-    //return true if string end with the character
-    var word = string;
-    if (word[word.length - 1] === char) {
+    //turn string to lower case
+    var lowerString = string.toLowerCase();
+    //turn char to lower case
+    var lowerChar = char.toLowerCase();
+    //if the string ends with char return true
+    if (lowerString[lowerString.length -1] === lowerChar) {
         return true;
-    //otherwise return false
+    //else return false
     } else {
         return false;
     }
@@ -170,7 +177,13 @@ function join(stringOne, stringTwo) {
  */
 function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+    //if stringOne is longer than StringTwo return stringOne
+    if (stringOne.length > stringTwo.length) {
+        return stringOne;
+    //otherwise return stringTwo
+    } else {
+        return stringTwo;
+    }
 
 
     // YOUR CODE ABOVE HERE //
@@ -185,7 +198,16 @@ function longest(stringOne, stringTwo) {
  */
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+    //if stringOne is higher in alphabetical order than stringTwo return 1
+    if (stringOne < stringTwo) {
+        return 1;
+    //if stringOne is lower than two return -1
+    } else if (stringOne > stringTwo) {
+        return -1;
+    //if they are equal return 0
+    } else {
+        return 0;
+    }
 
 
     // YOUR CODE ABOVE HERE //
@@ -201,7 +223,16 @@ function sortAscending(stringOne, stringTwo) {
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+    //if one is lower than two return 1
+    if (stringOne > stringTwo) {
+        return 1;
+    //if two is lower than one return -1
+    } else if (stringOne < stringTwo) {
+        return -1;
+    //if equal return 0
+    } else {
+        return 0;
+    }
 
 
 
