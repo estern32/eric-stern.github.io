@@ -14,11 +14,14 @@
  */
 function isArray(value) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+    //if the value is an array, return true
+    if (Array.isArray(value)) {
+        return true;
+    } else {
+    //otherwise return false
+        return false;
     // YOUR CODE ABOVE HERE //
+}
 }
 
 /** 
@@ -74,9 +77,7 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+
     
     // YOUR CODE ABOVE HERE //
 }
