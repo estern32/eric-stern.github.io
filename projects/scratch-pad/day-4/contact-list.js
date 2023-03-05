@@ -34,22 +34,22 @@
  */
 
 // YOUR CODE GOES BELOW HERE //
-function makeContact(id, nameFirst, nameLast) {
+function makeContact(id, nameFirst, nameLast) {  //factory function (return object with those keys)
 
 } 
 
 
-function makeContactList() {
+function makeContactList() {  //factory function (object returning is different, object full of methods)
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts;  //make this value an array  //look at contact.json for an idea
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
-        }
+        }  //have a pic showing how to get started
     }
 }
 
