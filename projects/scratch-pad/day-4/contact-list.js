@@ -34,24 +34,67 @@
  */
 
 // YOUR CODE GOES BELOW HERE //
-function makeContact(id, nameFirst, nameLast) {  //factory function (return object with those keys)
-
+function makeContact(id, nameFirst, nameLast) { 
+    //create object
+    var obj = {};
+    obj.id = id;
+    obj.nameFirst = nameFirst;
+    obj.nameLast = nameLast;
+    return obj;
 } 
 
 
-function makeContactList() {  //factory function (object returning is different, object full of methods)
+function makeContactList() { 
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;  //make this value an array  //look at contact.json for an idea
+    var contacts = [];
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
-        }  //have a pic showing how to get started
+        },
+        //addContat takes a contact object to be added to contacts
+        addContact: function(contact) {
+            contacts.push(contact);
+        },
+        //findContact takes a fullName string and returns the contact object if found in contacts
+        findContact: function(fullName) {
+            // loop through
+            for (var i = 0; i < contacts.length; i++) {
+                var name = contacts[i].nameFirst + ' ' + contacts[i].nameLast;
+                //compare names to fullNames
+                if (name === fullName) {
+                    //if fullName is in contacts return contact
+                    return contacts[i];
+                }
+            } 
+                //if not in contacts return undefined
+                return undefined;
+        },
+        //removeContact takes a contact object to be removed from contacts
+        removeContact: function(contact) {
+            //loop through to find the appropriate contact
+            for(var i = 0; i < contacts.length; i++){
+                if(contacts[i] === contact) {
+                    //remove contact using splice
+                    return contacts.splice(i, 1);
+                }
+
+            }
+        },
+        printAllContactNames: function() {
+            var nameArray = [];
+            for (var i = 0; i < contacts.length; i++) {
+                nameArray.push(contacts[i].nameFirst + ' ' + contacts[i].nameLast);
+            }
+            var stringOfNames = nameArray.join('\n');
+            return stringOfNames;
+        }
     }
 }
+
 
 
 
