@@ -85,11 +85,16 @@ function makeContactList() {
             }
         },
         printAllContactNames: function() {
+            //storage array
             var nameArray = [];
+            //loop through names
             for (var i = 0; i < contacts.length; i++) {
+                //push names to array
                 nameArray.push(contacts[i].nameFirst + ' ' + contacts[i].nameLast);
             }
+            //join names with \n
             var stringOfNames = nameArray.join('\n');
+            //return joined names
             return stringOfNames;
         }
     }
