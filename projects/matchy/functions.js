@@ -12,25 +12,64 @@
 //////////////////////////////////////////////////////////////////////
 // Step 1 - Search ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//implement a function declaration called search that takes a parameter representing an array of animals and a parameter representing a string (animal name)
+function search(arr, str) {
+    //create variable to be used as a based return
+    var ret = null;
+    //loop through animals array
+    for (var i = 0; i < arr.length; i++) {
+        //if str is in animals array 
+        if (str === arr[i].name) {
+            //change ret to the object
+            ret = arr[i];
+        }
+    } 
+    //return ret
+    return ret;
+}
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Replace //////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//write a function declaration called replace with animals (array), name (string) and replacement (object) as parameters
+function replace(animals, name, replacement) {
+    //loop through animal array
+    for (var i = 0; i < animals.length; i++) {
+        //if name is found in array replace with replacement
+        if (name === animals[i].name) {
+            animals.splice(i, 1, replacement);
+        }
+    }
+}
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//write a function called remove with parameters animals and name
+function remove(animals, name) {
+    //loop through array
+    for (var i = 0; i < animals.length; i++) {
+        //if name is in array remove it
+        if (name === animals[i].name) {
+            animals.splice(i, 1);
+        }
+    }
+}
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//write a function called add with parameters of animals and animnal
+function add(animals, animal) {
+    for (var i = 0; i < animals.length; i++) {
+        if (animal[i].name.length > 0 && animal[i].species.length > 0 && animal.name !== animals[i].name) {
+            animals.push(animal);
+        }
+    }
+}
 
 
 /**
