@@ -23,7 +23,18 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    //create a base array
+    var arr = [];
+    //use for loop to run through values
+    for (var key in object) {
+        //if value is string push into array
+        if (typeof object[key] === 'string') {
+            arr.push(object[key]);
+        }
+    }
+    //use join method to return values as a string separated by a space
+    var joined = arr.join(' ');
+    return joined;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -31,9 +42,11 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
+    //if collection is an array return 'array'
     if (Array.isArray(collection) === true) {
         return 'array';
-    } else if (typeof collection === 'object' && collection !== null && Object.prototype.toString.call(value) !== '[object Date]' & Array.isArray(collection) === false) {
+    //else if collection is an object literal return 'object
+    } else if (typeof collection === 'object' && collection !== null && Object.prototype.toString.call(collection) !== '[object Date]' && Array.isArray(collection) === false) {
         return 'object';
     }
 }
@@ -56,7 +69,13 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    var splitStr = string.split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+      var cap = splitStr[i].charAt(0).toUpperCase();
+      var slice = splitStr[i].slice(1);
+      var combined = cap + slice;
+    }
+  return combined;
 }
 
 //////////////////////////////////////////////////////////////////////
