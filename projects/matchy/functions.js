@@ -64,12 +64,21 @@ function remove(animals, name) {
 //////////////////////////////////////////////////////////////////////
 //write a function called add with parameters of animals and animnal
 function add(animals, animal) {
+    //create a variable as a base boolean value
+    var name = false;
+    //loop through array
     for (var i = 0; i < animals.length; i++) {
-        if (animal[i].name.length > 0 && animal[i].species.length > 0 && animal.name !== animals[i].name) {
-            animals.push(animal);
+        //if the three given checks are true change boolean value to true
+        if (animal.name.length > 0 && animal.species.length > 0 && animal.name === animals[i].name) {
+            name = true;
         }
+    } 
+    //if name isnt in array push animal object
+    if (name === false) {
+        animals.push(animal);
     }
 }
+
 
 
 /**
