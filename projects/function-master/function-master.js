@@ -3,7 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-
+    //use Object.values to return the values in an array
+    return Object.values(object);
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -11,7 +12,10 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
-
+    //use object.keys to get an array of keys
+    const keys = Object.keys(object);
+    //return all keys in a string separated by a space
+    return keys.join(' ');
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -27,7 +31,11 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    if (Array.isArray(collection) === true) {
+        return 'array';
+    } else if (typeof collection === 'object' && collection !== null && Object.prototype.toString.call(value) !== '[object Date]' & Array.isArray(collection) === false) {
+        return 'object';
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,7 +43,12 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    //convert first character to upper case
+    var a = string.charAt(0).toUpperCase();
+    //use slice to separate from first character
+    var b = string.slice(1);
+    //concatenate a and b
+    return a + b;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -51,7 +64,9 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+    if (object.name.length > 0) {
+        return 'Welcome <name>!'
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -75,7 +90,19 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    //create variable to be used as a base case
+    var match = false;
+    //use .split to turn string into array
+    const splitStr = string.split(' ');
+    //loop through array
+    for (var i = 0; i < splitStr.length; i++) {
+        //if word is in string of words change base variable to true
+        if (word === splitStr[i]) {
+            match = true;
+        }
+    }
+    //return variable
+    return match;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -83,7 +110,10 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    //add name to object's friends array
+    object.friends.push(name);
+    //return object
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
