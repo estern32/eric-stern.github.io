@@ -69,23 +69,33 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
+    //split string
     var splitStr = string.split(' ');
+    //create a base array to push new strings to
+    var arr = [];
+    //loop through strings
     for (var i = 0; i < splitStr.length; i++) {
-      var cap = splitStr[i].charAt(0).toUpperCase();
-      var slice = splitStr[i].slice(1);
-      var combined = cap + slice;
+        //capitalize first letter and slice rest and push the new strings to arr
+      arr.push(splitStr[i][0].toUpperCase() + splitStr[i].slice(1));
     }
-  return combined;
+    //join new arry and return joined
+    var joined = arr.join(' ');
+    return joined;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function welcomeMessage(object) {
-    if (object.name.length > 0) {
-        return 'Welcome <name>!'
-    }
+function welcomeMessage(object) { 
+    //capitalize first letter of name
+    var capLetter = object.name[0].toUpperCase();
+    //slice the rest of the name
+    var slice = object.name.slice(1);
+    //add together to come up with new name
+    var newName = capLetter + slice;
+        //return welcome message 
+        return 'Welcome ' + newName + '!';
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -93,7 +103,12 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+    //capitalize name
+    var newName = object.name[0].toUpperCase() + object.name.slice(1);
+    //capitalize species
+    var newSpecies = object.species[0].toUpperCase() + object.species.slice(1);
+    //return 'Name is a Species'
+    return newName + ' is a ' + newSpecies;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -101,7 +116,13 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+    //if object has a noises array with at lease one noise in it return the array as a string with spaces in between
+    if (Array.isArray(object.noises) && object.noises.length > 0) {
+        return object.noises.join(' ');
+    //if not return 'there are no noises'
+    } else {
+        return 'there are no noises';
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -140,7 +161,24 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    //create base bool
+    var bool = false;
+    //make sure it isn't an empty object
+    if (Object.keys(object).length > 0) {
+        //loop through friends
+        for (var i = 0; i < object.friends.length; i++){
+            //if name is in friends array change bool to true
+            if (name === object.friends[i]) {
+                bool = true;
+            }
+        }
+    }
+    //if bool is true return true else return false
+    if (bool === true) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -148,7 +186,19 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    var nonFriends = [];
+    for (var i = 0; i < array.length; i++) {
+        var bool = false;
+        for (var j = 0; j < array[i].friends.length; j++) {
+            if (name === array[i].friends[j]) {
+                bool = true;
+            }
+        }
+        if (bool === false && array[i].name !== name) {
+            nonFriends.push(array[i].name);
+        }
+    }
+    return nonFriends;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -164,7 +214,15 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    //create base bool
+    var bool = true;
+    //loop through array
+    for (var i = 0; i < array.length; i++) {
+        //if object property is in array, delete property
+        if (object.hasOwnProperty(array[i])) {
+            delete object[array[i]];
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
