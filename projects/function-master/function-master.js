@@ -186,18 +186,25 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
+    //create an array to store non friends
     var nonFriends = [];
+    //loop through the outer array
     for (var i = 0; i < array.length; i++) {
+        //create base bool
         var bool = false;
+        //loop through inner array
         for (var j = 0; j < array[i].friends.length; j++) {
+            //if name is in a friends array, bool is true
             if (name === array[i].friends[j]) {
                 bool = true;
             }
         }
+        //if bool is false and name does not equal a name in the array push to nonFriends
         if (bool === false && array[i].name !== name) {
             nonFriends.push(array[i].name);
         }
     }
+    //return nonFriends
     return nonFriends;
 }
 
@@ -206,7 +213,9 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    //update prop key with new value and add key if it doesnt exist
+    object[key] = value;
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -230,7 +239,17 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+    //create an array to push unique values
+    var newArray = []; 
+    //loop through array
+    for(var i = 0; i < array.length; i++) {
+        //push unique values into newArray
+        if (newArray.includes(array[i]) === false) {
+            newArray.push(array[i]);
+        }
+    }
+    //return newArray
+    return newArray;
 }
 
 //////////////////////////////////////////////////////////////////////
