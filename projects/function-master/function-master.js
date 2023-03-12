@@ -223,8 +223,7 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-    //create base bool
-    var bool = true;
+
     //loop through array
     for (var i = 0; i < array.length; i++) {
         //if object property is in array, delete property
