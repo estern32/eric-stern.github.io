@@ -179,10 +179,22 @@ _.indexOf = function(array, value) {
 */
 //function has arguments of an array and a value
 _.contains = function(array, value) {
+    //set base variable
+    let base = false;
+    //loop through array
     for (let i = 0; i < array.length; i++) {
-       var result = (array[i] === value) ? true : false;
+        //if value is in array base is true
+       if (array[i] === value) {
+        base = true;
+       } else {
+        //if no value base is false
+        if (value === null) {
+            base = false;
+        }
+       }
     }
-    return result;
+    //return ternary operator 
+    return (base === true) ? true : false;
 }
 
 
@@ -259,6 +271,20 @@ _.unique = function(array) {
 * Extra Credit:
 *   use _.each in your implementation
 */
+//function has arguments of an array and a function
+_.filter = function(array, func) {
+    //create new array
+    let newArr = [];
+    //call func for each element in array passing given arguments
+    for (let i = 0; i < array.length; i++) {
+        if (func(array[i], i, array)) {
+            //if func call returns true push element into newArr
+            newArr.push(array[i]);
+        }
+    }
+    //return newArr
+    return newArr;
+}
 
 
 /** _.reject
@@ -273,6 +299,20 @@ _.unique = function(array) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+//function has arguments of an array and a function
+_.reject = function(array, func) {
+    //create new array
+    let newArr = [];
+    //call func for each element of array passing given arguments
+    for (let i = 0; i < array.length; i++) {
+        //if calling function returns false push element to new array
+        if (func(array[i], i, array) === false) {
+            newArr.push(array[i]);
+        }
+    }
+    //return newArr
+    return newArr;
+}
 
 
 /** _.partition
@@ -293,6 +333,23 @@ _.unique = function(array) {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+//function has arguments of an array and a function
+_.partition = function(array, func) {
+    //create new array consisting of two sub arrays
+    let newArr =[[], []];
+    //call func for each element in array passing given arguments
+    for (let i = 0; i < array.length; i++) {
+        //if func returns something truthy push to one sub array
+        if (func(array[i], i, array)) {
+            newArr[0].push(array[i])
+            //if func returns something false push to the other sub array
+        } else {
+            newArr[1].push(array[i]);
+        }
+    }
+    //return newArr
+    return newArr;
+}
 
 
 /** _.map
@@ -310,6 +367,33 @@ _.unique = function(array) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
+//function has arguments of a collection and a function
+_.map = function(collection, func) {
+    //create new array
+    let newArr = [];
+    //call func for each element in collection passing the given arguments
+    //if collection is an array
+    if (Array.isArray(collection) === true) {
+        for (let i = 0; i < collection.length; i++) {
+            newArr.push(func(array[i], i, collection));
+        }
+        //if collection is an object
+    } else {
+        for (let key in collection) {
+            newArr.push(func(collection[key], key, collection));
+        }
+    }
+    //return newArr
+    return newArr;
+}
+// for each???? collection.forEach((name, index, array) => func(name, index, array))
+
+/*
+   newArr = array.map(function(o) {
+        return o[prop];
+    });
+*/
+
 
 
 /** _.pluck
@@ -322,6 +406,16 @@ _.unique = function(array) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+//function has arguments of an array of objects and a property
+_.pluck = function(array, prop) {
+    let newArr =[];
+    newArr = array.map(function(o) {
+        return o[prop];
+    });
+
+
+    return newArr;
+}
 
 
 /** _.every
@@ -344,6 +438,54 @@ _.unique = function(array) {
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
+//function has arguments of a collection and a function
+_.every = function(collection, func) {
+    //create base variable
+    let allItemsPass = true;
+    //determine if func did not receive a value
+    if (func === undefined) {
+        //is collection an array
+        if (Array.isArray(collection)) {
+            //loop through
+            for (let i = 0; i < collection.length; i++) {
+                //determine if current value is falsey
+                if (!collection[i]) {
+                    //change base variable
+                    allItemsPass = false;
+                }
+            }
+            //if object
+        } else {
+            for (let key in collection) {
+                //determine if current value is not truthy
+                if (!collection[key]) {
+                    allItemsPass = false;
+                }
+            }
+        }
+    } else {
+        //detemine if array
+        if (Array.isArray(collection)) {
+            //loop
+            for (let i = 0; i < collection.length; i++) {
+                //determine if the result of invoking function on current element, index and collection is not truthy
+                if (!func(collection[i], i, collection)) {
+                    allItemsPass = false;
+                }
+            }
+            //if object
+        } else {
+            //loop
+            for (let key in collection) {
+                //determine if the result of invoking function on current value, key and collection is not truthy
+                if (!func(collection[key], key, collection)) {
+                    allItemsPass = false;
+                }
+            }
+        }
+        //return allItemsPass
+    } return allItemsPass;
+}
 
 
 /** _.some
