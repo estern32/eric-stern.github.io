@@ -375,21 +375,33 @@ _.map = function(collection, func) {
     //if collection is an array
     if (Array.isArray(collection) === true) {
         for (let i = 0; i < collection.length; i++) {
-            newArr.push(func(array[i], i, collection));
+            newArr = collection.forEach(func(collection[i], i, collection));
         }
         //if collection is an object
     } else {
         for (let key in collection) {
-            newArr.push(func(collection[key], key, collection));
+            newArr = collection.forEach(func(collection[key], key, collection));
         }
     }
     //return newArr
     return newArr;
 }
+
 // for each???? collection.forEach((name, index, array) => func(name, index, array))
+/*
+let students = ['John', 'Sara', 'Jack'];
+
+// using forEach
+students.forEach(myFunction);
+
+function myFunction(item) {
+
+    console.log(item);
+}
+*/
 
 /*
-   newArr = array.map(function(o) {
+   newArr = collection.map(function(o) {
         return o[prop];
     });
 */
@@ -408,12 +420,14 @@ _.map = function(collection, func) {
 */
 //function has arguments of an array of objects and a property
 _.pluck = function(array, prop) {
+    //create new array
     let newArr =[];
+    //use .map to return the object values
     newArr = array.map(function(o) {
         return o[prop];
     });
 
-
+    //return newArr
     return newArr;
 }
 
@@ -508,6 +522,54 @@ _.every = function(collection, func) {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+//function has arguments of a collection and a function
+_.some = function(collection, func) {
+    //create base variable
+    let allItemsPass = false;
+    //determine if func did not receive a value
+    if (func === undefined) {
+        //is collection an array
+        if (Array.isArray(collection)) {
+            //loop through
+            for (let i = 0; i < collection.length; i++) {
+                //determine if current value is truthy
+                if (collection[i]) {
+                    //change base variable
+                    allItemsPass = true;
+                }
+            }
+            //if object
+        } else {
+            for (let key in collection) {
+                //determine if current value is not truthy
+                if (collection[key]) {
+                    allItemsPass = true;
+                }
+            }
+        }
+    } else {
+        //detemine if array
+        if (Array.isArray(collection)) {
+            //loop
+            for (let i = 0; i < collection.length; i++) {
+                //determine if the result of invoking function on current element, index and collection is truthy
+                if (func(collection[i], i, collection)) {
+                    allItemsPass = true;
+                }
+            }
+            //if object
+        } else {
+            //loop
+            for (let key in collection) {
+                //determine if the result of invoking function on current value, key and collection is truthy
+                if (func(collection[key], key, collection)) {
+                    allItemsPass = true;
+                }
+            }
+        }
+        //return allItemsPass
+    } return allItemsPass;
+}
 
 
 /** _.reduce
