@@ -149,17 +149,21 @@ _.last = function(array, number) {
 */
 //function has arguments of array and value
 _.indexOf = function(array, value) {
-    //loop through array
-    for (let i = 0; i < array.length; i++) {
-        //if value is not in array return -1???
-        if (array[i] === value) {
-            return -1;
-            //else return the index of the first occurrance of value in array
-        } else {
-            return array.indexOf(value);
+    //if value is not in array return -1
+    if (array.includes(value) === false) {
+        return -1;
+        //else return index of first occurrance 
+    } else {
+        //loop through
+        for (let i = 0; i < array.length; i++) {
+            //return index of first occurance
+            if (array[i] === value) {
+                return i;
+            }
+        }
       
         }
-    }
+    
 }
 
 
@@ -179,22 +183,8 @@ _.indexOf = function(array, value) {
 */
 //function has arguments of an array and a value
 _.contains = function(array, value) {
-    //set base variable
-    let base = false;
-    //loop through array
-    for (let i = 0; i < array.length; i++) {
-        //if value is in array base is true
-       if (array[i] === value) {
-        base = true;
-       } else {
-        //if no value base is false
-        if (value === null) {
-            base = false;
-        }
-       }
-    }
-    //return ternary operator 
-    return (base === true) ? true : false;
+    //use ternary operator to see if array include value
+    return array.includes(value) ? true : false;
 }
 
 
@@ -275,8 +265,9 @@ _.unique = function(array) {
 _.filter = function(array, func) {
     //create new array
     let newArr = [];
-    //call func for each element in array passing given arguments
+    //loop through array to see if test passes for each
     for (let i = 0; i < array.length; i++) {
+        //call func for each element to see if truthy
         if (func(array[i], i, array)) {
             //if func call returns true push element into newArr
             newArr.push(array[i]);
@@ -341,7 +332,7 @@ _.partition = function(array, func) {
     for (let i = 0; i < array.length; i++) {
         //if func returns something truthy push to one sub array
         if (func(array[i], i, array)) {
-            newArr[0].push(array[i])
+            newArr[0].push(array[i]);
             //if func returns something false push to the other sub array
         } else {
             newArr[1].push(array[i]);
