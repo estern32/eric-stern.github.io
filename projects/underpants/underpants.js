@@ -395,15 +395,12 @@ _.map = function(collection, func) {
 */
 //function has arguments of an array of objects and a property
 _.pluck = function(array, prop) {
-    //create new array
-    let newArr =[];
-    //use .map to return the object values
-    newArr = array.map(function(o) {
-        return o[prop];
-    });
-
-    //return newArr
-    return newArr;
+    //return an array containing the value of prop for every element in array using _.map
+    return _.map(array, function(object) {
+        for (let key in object) {
+            return object[key];
+        }
+    })
 }
 
 
@@ -605,6 +602,18 @@ _.reduce = function(array, func, seed) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+//function has arguments of an object, an object, and possibly more objects
+._extend = function(object1, object2, ...moreObjects) {
+    //copy properties from object2 to object1
+    object1 = Object.assign({}, object2);
+    //if more objects are passed in, copy their properties to object1 as well in the order they are passed in
+    for (let i = 0; i < moreObjects.length; i++) {
+        newObj = Object.assign(object1, ...moreObjects[i]);
+    }
+    //return update object1
+    return newObj;
+}
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

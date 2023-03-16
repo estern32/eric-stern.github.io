@@ -34,3 +34,7 @@
 1) In terminal, type => git add -A
 2) In terminal, type => git commit -m "description" (not the word description, a real description of work that has been completed)
 3) In terminal type => git push (basically a save button)
+
+# How to cd back into correct workspace (if terminal reads /workspace)
+1) In terminal, type => cd first-last.github.io
+2) Run git commands

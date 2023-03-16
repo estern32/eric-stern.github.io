@@ -292,11 +292,11 @@ module.exports.map = map;
  */
 
 function pluck(array, prop) {
-    let newArr =[];
-    newArr = array.map(function(x) {
-        return x[prop];
-    });
-    return newArr;
+    return _.map(array, function(object) {
+        for (let key in object) {
+            return object[key];
+        }
+    })
 }
 
 module.exports.pluck = pluck;
