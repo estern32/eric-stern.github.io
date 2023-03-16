@@ -91,6 +91,7 @@ _.first = function(array, number) {
         return array[0];
         //else return the first number of items of array
     } else {
+        //use splice to return number of items 
         return array.splice(0, number);
     }
 }
@@ -160,10 +161,8 @@ _.indexOf = function(array, value) {
             if (array[i] === value) {
                 return i;
             }
-        }
-      
-        }
-    
+        } 
+    } 
 }
 
 
@@ -236,8 +235,9 @@ _.unique = function(array) {
     //return a new array with all duplicates removed from array
     //loop through array
     for (let i = 0; i < array.length; i++) {
-        //if newArr does not include element push to newArr
-        if (newArr.includes(array[i]) === false) {
+        //use indexOf to see if current element is first occurrence
+        if (array.indexOf(array[i]) === i) {
+            //if so, push to new array
             newArr.push(array[i]);
         }
     }
@@ -381,26 +381,6 @@ _.map = function(collection, func) {
     //return newArr
     return newArr;
 }
-
-// for each???? collection.forEach((name, index, array) => func(name, index, array))
-/*
-let students = ['John', 'Sara', 'Jack'];
-
-// using forEach
-students.forEach(myFunction);
-
-function myFunction(item) {
-
-    console.log(item);
-}
-*/
-
-/*
-   newArr = collection.map(function(o) {
-        return o[prop];
-    });
-*/
-
 
 
 /** _.pluck
