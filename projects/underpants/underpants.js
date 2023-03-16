@@ -365,13 +365,17 @@ _.map = function(collection, func) {
     //call func for each element in collection passing the given arguments
     //if collection is an array
     if (Array.isArray(collection) === true) {
+        //use for loop to iterate
         for (let i = 0; i < collection.length; i++) {
-            newArr = collection.forEach(func(collection[i], i, collection));
+            //push return values to newArr
+            newArr.push(func(collection[i], i, collection));
         }
-        //if collection is an object
+        //if object
     } else {
+        //iterate through object
         for (let key in collection) {
-            newArr = collection.forEach(func(collection[key], key, collection));
+            //push return values to newArr
+            newArr.push(func(collection[key], key, collection))
         }
     }
     //return newArr
@@ -581,6 +585,30 @@ _.some = function(collection, func) {
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
+//function has arguments of an array, a function and a seed
+_.reduce = function(array, func, seed) {
+    //create base variable result
+    let result;
+    //if seed is undefined use the first element of array
+    if (seed === undefined) {
+        result = array[0];
+        //loop through array
+        for (let i = 1; i < array.length; i++) {
+            //reassign result to invoking function on result, element, index, and array
+            result = func(result, array[i], i, array);
+        }
+        //else seed is defined
+    } else {
+        result = seed;
+        //loop through array
+        for (let i = 0; i < array.length; i++) {
+            //reassign result
+            result = func(result, array[i], i, array);
+        }
+    }
+    //return result
+    return result;
+}
 
 
 /** _.extend
