@@ -15,17 +15,39 @@ var _ = require('underbar');
  * 3. We started the first one for you as an example! Make the rest in that style.
  *
  * 4. To test your work, run the following command in your terminal:
- *
+ * 
  *    npm start --prefix ./eric-stern.github.io/projects/let-s-get-functional
  *
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
 var maleCount = function(array) {
-
+    //use _.filter to return an array of only the male customers
+    let males = _.filter(array, function(customer) {
+        return customer.gender === 'male';
+    })
+    //return the length of the males array
+    return males.length;
 };
 
-var femaleCount;
+var femaleCount = function(array) {
+    //use _.reduce to accumulate the number of female customers
+    let females = _.reduce(array, function(accumulator, current) { 
+        if (current.gender === 'female') {
+            accumulator += 1;
+        }
+        return accumulator;
+    }, 0)
+    return females;
+};
+
+/*
+### 2: `femaleCount`
+ - **Objective**: Find the number of female customers
+ - **Input**: `Array`
+ - **Output**: `Number`
+ - **Constraints**: use `reduce`
+ */
 
 var oldestCustomer;
 
