@@ -33,21 +33,17 @@ var maleCount = function(array) {
 var femaleCount = function(array) {
     //use _.reduce to accumulate the number of female customers
     let females = _.reduce(array, function(accumulator, current) { 
+        //if customer is female add to accumulator
         if (current.gender === 'female') {
             accumulator += 1;
         }
+        //return accumulator
         return accumulator;
     }, 0)
+    
     return females;
 };
 
-/*
-### 2: `femaleCount`
- - **Objective**: Find the number of female customers
- - **Input**: `Array`
- - **Output**: `Number`
- - **Constraints**: use `reduce`
- */
 
 var oldestCustomer;
 

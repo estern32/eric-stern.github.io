@@ -423,3 +423,22 @@ function reduce(array, func, seed) {
 }
 
 module.exports.reduce = reduce;
+
+/**
+ * Extend: Function takes two objects and copies properties from object 2 to 
+ * object 1. If more objects are passed in, it copies their properties to object 1
+ * as well, in the order they are passed in. It returns the updated object 1.
+ * @param { Object } object1: The object properties are copied to.
+ * @param { Object } object2: The object whose properties are copied to object 1.
+ * @param  { ...possibly more object } moreObjects: Possible objects passed in also whose 
+ * properties are copied to object 1.
+ * @returns: Returns the updated object 1.
+ */
+
+function extend(object1, object2, ...moreObjects) {
+    var newObj = Object.assign(object1, object2);
+    Object.assign(newObj, ...moreObjects);
+    return newObj;
+}
+
+module.exports.extend = extend;
