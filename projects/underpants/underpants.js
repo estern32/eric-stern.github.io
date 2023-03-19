@@ -603,14 +603,16 @@ _.reduce = function(array, func, seed) {
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 //function has arguments of an object, an object, and possibly more objects
-._extend = function(object1, object2, ...moreObjects) {
+_.extend = function(object1, object2, ...moreObjects) {
     //copy properties from object2 to object1
-    object1 = Object.assign({}, object2);
+
+    // create new object with the values of object1 and object2
+    var newObj = Object.assign(object1, object2);
+    
     //if more objects are passed in, copy their properties to object1 as well in the order they are passed in
-    for (let i = 0; i < moreObjects.length; i++) {
-        newObj = Object.assign(object1, ...moreObjects[i]);
-    }
-    //return update object1
+    Object.assign(newObj, ...moreObjects);
+
+    //return updated object1
     return newObj;
 }
 
