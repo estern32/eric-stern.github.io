@@ -3,7 +3,7 @@
 - How to test projects
 1) In terminal, type => code ~/.bashrc 
 //paste code ~/.bashrc in the terminal
-2) on line 4  type CHE_PROJECTS_ROOT=/workspace
+2) on line 4  type export CHE_PROJECTS_ROOT=/workspace
 3) exit out of bashrc file
 4)"Kill" terminal by clicking the recycle bin icon (can always reopen it, just to make sure it saves correctly)
 5)Reopen terminal (create new terminal)
