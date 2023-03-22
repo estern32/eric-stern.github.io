@@ -2,32 +2,73 @@
 // min /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function min() {
-
+function min(x, y) {
+  //return the minimum
+  return Math.min(x, y);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // isEven //////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function isEven() {
-
-}
+function isEven(n) {
+  //if n is positive
+  if (n >= 0) {
+    //if n ends at 1 will be odd and should return false
+      if (n === 1) {
+        return false;
+      //if n ends at 0 will be even and should return true
+      } else if (n === 0) {
+        return true;
+     } 
+     //subtract 2 each call for positive numbers
+     return isEven(n - 2);
+    //if n is negative
+    } else {
+      if (n === 1) {
+        return false;
+      } else if (n === 0) {
+        return 0;
+      }
+      //add 2 each call for negative numbers
+      return isEven(n + 2);
+    }
+  };
 
 ////////////////////////////////////////////////////////////////////////////////
 // countChars //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countChars() {
-
+function countChars(string, char) {
+  //create counter variable
+  let counter = 0;
+  //loop through string
+  for (let i = 0; i < string.length; i++) {
+    //if any character in string equals char add 1 to counter
+    if (string[i] === char) {
+      counter++;
+    }
+  }
+  //return counter
+  return counter;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // countBs /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countBs() {
-
+function countBs(string) {
+  //create counter variable
+  let counter = 0;
+  //loop through string
+  for (let i = 0; i < string.length; i++) {
+    //if any character in string equals B add one to counter
+    if(string[i] === 'B') {
+      counter++;
+    }
+  }
+  //return counter
+  return counter;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
