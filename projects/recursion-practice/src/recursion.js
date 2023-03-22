@@ -95,25 +95,25 @@ var sumBelow = function(n, output = 0) {
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y, output = []) {
-  if (x > y) {
+  if (x === y) {
+    return [];
+  } else if (x > y) {
     //base
-    if (x - 1 === y || x === y) {
+    if (x - 1 === y) {
       return output;
     }
     //recursion
     output.push(x - 1);
     return range(x - 1, y, output);
-  } else {
-    if (x < y) {
+  } else if (x < y) {
       //base
-      if (x + 1 === y || x === y) {
+      if (x + 1 === y) {
         return output;
       }
       //recursion
       output.push(x + 1);
       return range(x + 1, y, output);
   }
-}
   
 };
 
@@ -147,7 +147,26 @@ var reverse = function(string, output = '') {
 };
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {
+var palindrome = function(string, output = true) {
+  //if string length is 1 return true
+  if (string.length === 1) {
+    return true;
+    //if string length is 2 and both characters are the same return true
+  } else if (string.length === 2) {
+    return string[0] === string[1];
+  } else if (string.length > 2) {
+    //base
+    if (string[0] !== string[string.length - 1]) {
+      return false;
+    }
+  }
+  //check if first and last characters are same
+  if (string[0] === string[string.length - 1]) {
+    output = true
+  }
+  //call function with first and last character of string removed
+  return palindrome((string.substring(1, string.length - 1)), output);
+
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the   //SKIP FOR NOW (BLUE)
@@ -162,14 +181,33 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y, output = 0) {
-  //base
+  if (x < 0 && y < 0) {
+    if (y === 0) {
+      return output + output + output;
+    }
+    output -= x;
+    return multiply(x, y + 1, output);
+  } else if (x < 0 && y >= 0) {
+    if (y === 0) {
+      return output;
+    }
+    output += x;
+    return multiply(x, y - 1, output);
+  } else if (x >= 0 && y < 0) {
+    if (y === 0) {
+      return output;
+    }
+    output -= x;
+    return multiply(x, y + 1 , output);
+  } else if (x >= 0 && y >= 0) {
   if (y === 0) {
     return output;
   }
-  //recursion
   output += x;
-  multiply(x, y - 1, output);
+  return multiply(x, y - 1 , output);
+}
 };
+
 
 
 //multiply(2, 4); 2 + 2 + 2 + 2
