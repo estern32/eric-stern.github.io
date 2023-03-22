@@ -122,14 +122,54 @@ var range = function(x, y, output = []) {
 // 8^2 = 8 x 8 = 64.  Here, 8 is the base and 2 is the exponent.
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
-var exponent = function(base, exp) {
+var exponent = function(base, exp, output = 1) {
+  if (exp >= 0) {
+    //base
+    if (exp === 0) {
+      return output;
+    }
+    //recursion
+    output *= base;
+    return (exponent(base, exp - 1, output));
+  } else if (exp < 0) {
+    base = 1 / base;
+    exp = exp * -1;
+    if (exp === 0) {
+      return output; //Number(output.toFixed(4)) wont work to convert it
+    }
+    //recursion
+    output *= base;
+    return (exponent(base, exp - 1, output));
+  }
 };
+
+      
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //if n is 0 return false
+  if (n === 0) {
+    return false;
+    //if n is 1 or 2 return true
+  } else if (n === 1 || n === 2) {
+    return true;
+    // n > 2 use recursion
+  } else {
+    //divide n by 2 if it's now less than 2 it is not a power of 2
+    let result = n / 2;
+    if (result < 2) {
+        return false;
+        //if n / 2 is 2 then it is a power of 2
+    } else if (result === 2) {
+        return true;
+        //otherwise call the function with n divided by 2
+    } else {
+        return powerOfTwo(n / 2);
+    }
+  }
 };
 
 // 9. Write a function that accepts a string a reverses it.
