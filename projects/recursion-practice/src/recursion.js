@@ -123,19 +123,21 @@ var range = function(x, y, output = []) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp, output = 1) {
+  //if exp is positive
   if (exp >= 0) {
     //base
     if (exp === 0) {
       return output;
     }
-    //recursion
+    //recursion //multiply base times itself until exp is 0
     output *= base;
     return (exponent(base, exp - 1, output));
+    //if exp is negative
   } else if (exp < 0) {
     base = 1 / base;
     exp = exp * -1;
     if (exp === 0) {
-      return output; //Number(output.toFixed(4)) wont work to convert it
+      return output; 
     }
     //recursion
     output *= base;
@@ -188,25 +190,23 @@ var reverse = function(string, output = '') {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string, output = true) {
-  //if string length is 1 return true
-  if (string.length === 1) {
+   if (string.length > 2) {
+    //base
+    if (string[0] !== string[string.length - 1]) {
+      return false;
+        //check if first and last characters are same
+    } else if (string[0] === string[string.length - 1]) {
+      output = true
+    } 
+    //call function with first and last character of string removed
+    return palindrome((string.substring(1, string.length - 1)), output);
+    //if string length is 1 return true
+  } else if (string.length === 1) {
     return true;
     //if string length is 2 and both characters are the same return true
   } else if (string.length === 2) {
     return string[0] === string[1];
-  } else if (string.length > 2) {
-    //base
-    if (string[0] !== string[string.length - 1]) {
-      return false;
-    }
   }
-  //check if first and last characters are same
-  if (string[0] === string[string.length - 1]) {
-    output = true
-  }
-  //call function with first and last character of string removed
-  return palindrome((string.substring(1, string.length - 1)), output);
-
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the   //SKIP FOR NOW (BLUE)
@@ -288,7 +288,15 @@ var compareStr = function(str1, str2, output = '') {
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(str, output = []) {
+  //base
+  if (str.length === 0) {
+    return output;
+  }
+  //recursion //push first character of string to output array
+  output.push(str[0]);
+  //call function with first character removed from str
+  return createArray(str.slice(1), output);
 };
 
 // 17. Reverse the order of an array
