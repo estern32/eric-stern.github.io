@@ -16,6 +16,7 @@ var factorial = function(n) {
   return n * factorial(n - 1);
 };
 
+
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
 
@@ -30,19 +31,6 @@ var sum = function(array, output = 0) {
 //remove first element from the array each function call until base is hit
   return sum(array.slice(1), output);
 };
-
-//say we want sum([1, 2, 3])
-/**
- * //if length of [1, 2, 3] is 0 //false
- *  //output = 0 + 1
- *    //if length of [2, 3] is 0 //false
- *    //output = 0 + 1 + 2
- *      //if length of [3] is 0 //false
- *      //output = 0 + 1 + 2 + 3
- *        //if length of [] is 0 // true
- *        //return output (0 + 1 + 2 + 3)
- *
- */
 
 
 // 3. Sum all numbers in an array containing nested arrays.  //SKIP FOR NOW (BLUE)
@@ -75,6 +63,7 @@ var isEven = function(n) {
   }
 };
 
+
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
@@ -102,34 +91,29 @@ var sumBelow = function(n, output = 0) {
   }
 };
 
-/**
- * sumBelow(4)
- * //4 === 0 //false
- * //output = 0 + 3 = 3
- *  //3 === 0 //false
- *  //output = 3 + 2 = 5
- *    //2 === 0 //false
- *    //output = 5 + 1 = 6
- *      //1 === 0 //false
- *      //output = 6 + 0 = 6
- *        //0 === 0 //true
- *        //return output //6
- * 
- */
-
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
-var range = function(x, y) {
-  //if x > y
-
-  //base
-
-  //if x < y
-
-  //base
-
-  //recursion
+var range = function(x, y, output = []) {
+  if (x > y) {
+    //base
+    if (x - 1 === y || x === y) {
+      return output;
+    }
+    //recursion
+    output.push(x - 1);
+    return range(x - 1, y, output);
+  } else {
+    if (x < y) {
+      //base
+      if (x + 1 === y || x === y) {
+        return output;
+      }
+      //recursion
+      output.push(x + 1);
+      return range(x + 1, y, output);
+  }
+}
   
 };
 
@@ -149,7 +133,17 @@ var powerOfTwo = function(n) {
 };
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {
+var reverse = function(string, output = '') {
+  //base
+  if (string.length === 0) {
+    return output;
+  }
+  //recursion
+  // add last character from string to output
+  output += string[string.length - 1];
+  //call function after removing last character
+  return reverse(string.slice(0, -1), output);
+
 };
 
 // 10. Write a function that determines if a string is a palindrome.
@@ -167,8 +161,19 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
-var multiply = function(x, y) {
+var multiply = function(x, y, output = 0) {
+  //base
+  if (y === 0) {
+    return output;
+  }
+  //recursion
+  output += x;
+  multiply(x, y - 1, output);
 };
+
+
+//multiply(2, 4); 2 + 2 + 2 + 2
+
 
 // 13. Write a function that divides two numbers without using the / operator  or   //SKIP FOR NOW (BLUE)
 // JavaScript's Math object.         
@@ -188,7 +193,19 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {
+var compareStr = function(str1, str2, output = '') {
+  //base
+  if (str1.length === 0) {
+    return output;
+  }
+  //recursion
+  output += str1[0];
+
+  compareStr(str1.slice(1), str2, output1);
+
+  if (output1 === str2) {
+    return true;
+  }
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
