@@ -134,16 +134,14 @@ var exponent = function(base, exp, output = 1) {
     return (exponent(base, exp - 1, output));
     //if exp is negative
   } else if (exp < 0) {
-    base = 1 / base;
-    exp = exp * -1;
     if (exp === 0) {
       return output; 
     }
     //recursion
-    output *= base;
-    return (exponent(base, exp - 1, output));
+  return 1 / exponent(base, -exp);
   }
 };
+// return power(base, exponent+1)/base
 
       
 
@@ -190,22 +188,25 @@ var reverse = function(string, output = '') {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string, output = true) {
-   if (string.length > 2) {
-    //base
-    if (string[0] !== string[string.length - 1]) {
+  //remove spaces and make all lower case
+  let newStr = string.replace(/[^a-z0-9]/i, '').toLowerCase();
+      //if string length is 1 return true
+  if (newStr.length === 1) {
+    return true;
+      //if string length is 2 and both characters are the same return true
+  } else if (newStr.length === 2) {
+    return newStr[0] === newStr[1];
+  }
+  if (newStr.length > 2) {
+    //if first and last letter arent equal return false
+    if (newStr[0] !== newStr[newStr.length - 1]) {
       return false;
-        //check if first and last characters are same
-    } else if (string[0] === string[string.length - 1]) {
+        //if they are output = true
+    } else if (newStr[0] === newStr[newStr.length - 1]) {
       output = true
     } 
     //call function with first and last character of string removed
-    return palindrome((string.substring(1, string.length - 1)), output);
-    //if string length is 1 return true
-  } else if (string.length === 1) {
-    return true;
-    //if string length is 2 and both characters are the same return true
-  } else if (string.length === 2) {
-    return string[0] === string[1];
+    return palindrome((newStr.substring(1, newStr.length - 1)), output);
   }
 };
 
@@ -271,19 +272,27 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2, output = '') {
+var compareStr = function(str1, str2, output = false) {
+  //if string lengths arent equal output is false
+  if (str1.length !== str2.length){
+    output = false;
+    //if both are empty strings output is true
+  } else if (str1 === '' && str2 === '') {
+    output = true;
+  }
   //base
   if (str1.length === 0) {
     return output;
   }
-  //recursion
-  output += str1[0];
-
-  compareStr(str1.slice(1), str2, output1);
-
-  if (output1 === str2) {
-    return true;
+  //if str1 === str 2 output is true, else return false
+  if (str1[0] === str2[0]) {
+    output = true;
+  } else {
+    return false;
   }
+  //call function with first characters of each string removed
+  return compareStr(str1.slice(1), str2.slice(1), output);
+  
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
@@ -421,9 +430,17 @@ var capitalizeWords = function(input, output = []) {
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array, output = []) {
   //base
-
-  //
-  
+  if (array.length === 0) {
+    return output;
+  }
+  //capitalize first letter of 0 index
+  let cap = array[0].charAt(0).toUpperCase();
+  //slice rest of 0 index
+  let slice = array[0].slice(1);
+  //push combined capitalized first letter and sliced rest to output
+  output.push(cap + slice);
+  //call function with first element of array removed
+  return capitalizeFirst(array.slice(1), output);
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.   //SKIP FOR NOW (BLUE)
@@ -446,6 +463,10 @@ var flatten = function(arrays) {
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj) {
+  //base
+
+  //
+
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -453,7 +474,17 @@ var letterTally = function(str, obj) {
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
-var compress = function(list) {
+var compress = function(list, output = []) {
+  //base
+  if (list.length === 0) {
+    return output;
+  }
+  //if first element and second element arent the same push first element to output
+  if (list[0] !== list[1]) {
+    output.push(list[0]);
+  }
+  //call function with first element removed
+  return (compress(list.slice(1), output));
 };
 
 // 32. Augment every element in a list with a new value where each element is an array   //SKIP FOR NOW (BLUE)
@@ -465,20 +496,60 @@ var augmentElements = function(array, aug) {
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, output = []) {
+  //base
+  if (array.length === 0) {
+    return output;
+  }
+  //if first element is not 0 push to output array
+  if (array[0] !== 0) {
+    output.push(array[0]);
+    //if the first element is 0 and the second element is not 0 push to output array
+  } else if (array[0] === 0 && array[1] !== 0) {
+    output.push(array[0]);
+  }
+  //call function with first element removed
+  return minimizeZeroes(array.slice(1), output);
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
-};
+var alternateSign = function(array, output = []) {    
+//base
+    if (array.length === 0) {
+      return output;
+    }
+    //
+    if (array[0] > 0) {
+      output.push(array[0]);
+      if (array[1] >= 0) {
+        output.push(array[1] * -1)
+      } else {
+        output.push(array[1]);
+      }
+    } else if (array[0] < 0) {
+      output.push(array[0] * -1);
+      if (array[1] >= 0) {
+        output.push(array[1] * -1)
+      } else {
+        output.push(array[1]);
+      }
+    }
+    return alternateSign(array.splice(2), output);
+  };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, output1 = [], output2 = '') {
+  let arr = str.split(' ');
+  if (arr.length === 0) {
+    output2 = arr.join(' ');
+  }
+  
+
 };
 
 // *** EXTRA CREDIT ***
