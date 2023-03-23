@@ -1125,7 +1125,6 @@
     describe('34. Alternate sign', function() {
       var input1 = [2,7,8,3,1,4];
       var input2 = [-2,-7,8,3,-1,4];
-
       it('should return an array', function() {
         expect(Array.isArray(alternateSign(input1))).to.equal(true);
       });

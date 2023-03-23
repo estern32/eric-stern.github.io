@@ -517,28 +517,30 @@ var minimizeZeroes = function(array, output = []) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array, output = []) {    
-//base
-    if (array.length === 0) {
-      return output;
-    }
-    //
-    if (array[0] > 0) {
-      output.push(array[0]);
-      if (array[1] >= 0) {
-        output.push(array[1] * -1)
-      } else {
-        output.push(array[1]);
+  //base
+      if (array.length === 0) {
+        return output;
       }
-    } else if (array[0] < 0) {
-      output.push(array[0] * -1);
-      if (array[1] >= 0) {
-        output.push(array[1] * -1)
-      } else {
-        output.push(array[1]);
+      //if first element is positive, make sure second element is negative. Push new elements to output
+      if (array[0] > 0) {
+        output.push(array[0]);
+        if (array[1] > 0) {
+          output.push(array[1] * -1)
+        } else {
+          output.push(array[1]);
+        }
+        //if first element is negative change to positive, and make sure second element is negative. Push to output
+      } else if (array[0] < 0) {
+        output.push(array[0] * -1);
+        if (array[1] > 0) {
+          output.push(array[1] * -1)
+        } else {
+          output.push(array[1]);
+        }
       }
-    }
-    return alternateSign(array.splice(2), output);
-  };
+      //call function removing first two elements of array
+      return alternateSign(array.slice(2), output);
+    };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
