@@ -328,12 +328,30 @@ var buildList = function(value, length, output = []) {
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value) {
+var countOccurrence = function(array, value, output = 0) {
+  //base
+  if (array.length === 0) {
+    return output;
+  }
+  //if first element in array === value add 1 to output
+  if (array[0] === value) {
+    output += 1;
+  }
+  //call function with first element removed
+  return countOccurrence(array.slice(1), value, output);
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
-var rMap = function(array, callback) {
+var rMap = function(array, callback, output = []) {
+  //base
+  if (array.length === 0) {
+    return output;
+  }
+  //push result of callback function on first element of array
+  output.push(callback(array[0]));
+  //call function with first element of array removed
+  return rMap(array.slice(1), callback, output);
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.   //SKIP FOR NOW (BLUE)
@@ -369,17 +387,43 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  //index 0 === 0
+  if (n === 0) {
+    return 0;
+  //index 1 and 2 === 1
+  } else if (n > 0 && n < 2) {
+    return 1;
+    //negative numbers return null
+  } else if (n < 0) {
+    return null;
+  } else {
+    //otherwise will equal the sum of the two indexes before
+    return (nthFibo(n - 1)) + (nthFibo(n - 2));
+  }
+  
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+var capitalizeWords = function(input, output = []) {
+  //base
+  if (input.length === 0) {
+    return output;
+  }
+  //push the first element of input capitalized to output array
+  output.push(input[0].toUpperCase());
+  //call function with first element of input removed
+  return capitalizeWords(input.slice(1), output);
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
-var capitalizeFirst = function(array) {
+var capitalizeFirst = function(array, output = []) {
+  //base
+
+  //
+  
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.   //SKIP FOR NOW (BLUE)
