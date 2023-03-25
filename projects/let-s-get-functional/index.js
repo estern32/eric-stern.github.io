@@ -74,14 +74,13 @@ var youngestCustomer = function(array) {
 };
 
 var averageBalance = function(array) {
-    let balance = _.reduce(array, function(total, current) {
+    let balance = _.reduce(array, function(total, current) { 
         //find the total balance and divide by array length
-        ((Number(total.balance.replace(/[^0-9.-]+/g,""))) + (Number(current.balance.replace(/[^0-9.-]+/g,""))));
-    })
-    //convert total from 
-    let average = balance / array.length;
-    //return average
-    return average;
+        total += current.balance.replace(/\$/g,'');
+        return total / array.length;
+    }, 0)
+    return balance;
+
 };
 
 var firstLetterCount = function(array, letter) {
@@ -95,21 +94,7 @@ var firstLetterCount = function(array, letter) {
 };
 
 var friendFirstLetterCount = function(array, customerName, letter) {
-    //how many friends of a given customer's names begin with letter
-    let customer = _.filter(array, function(person) {
-        return person.name === customerName;
-    });
-    let friends = _.filter(customer.friends, function(customer) {
-        let firstFriends = [];
-        for (let i = 0; i < customer.friends.length; i++) {
-            if (customer.friends[i].name[0].toUpperCase() === letter.toUpperCase()) {
-                firstFriends.push(customer.friends[i]);
-            }
-        }
-        return firstFriends;
-    })
-    //return number of friends that begin with letter
-    return friends.length;
+    
 };
 
 /*
@@ -118,7 +103,22 @@ var friendFirstLetterCount = function(array, customerName, letter) {
  - **Output**: `Number`
  */
 
-var friendsCount;
+var friendsCount = function(array, name) {
+    let friends = _.reduce(function(accumulator, current) {
+        for (let i = 0; i < current.friends.length; i++) {
+            if (current.friends[i].includes(name)) {
+                accumulator.push(current.name);
+            }
+        }
+    }, []);
+    return friends;
+};
+
+/*### 8: `friendsCount`
+ - **Objective**: Find the customers' names that have a given customer's name in their friends list
+ - **Input**: `Array`, `Name`
+ - **Output**: `Array`
+ */
 
 var topThreeTags;
 
