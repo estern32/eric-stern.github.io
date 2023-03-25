@@ -9,7 +9,7 @@ value a variable has and what type of operations can be applied to it without ca
 /* A primitive data type that refers to numeric data. It can refer to whole numbers or decimal 
 numbers. They can be used to perform mathematical calculations.  
 */
-let added = 2 + 2; 
+var added = 2 + 2; 
 console.log(added); //prints => 4 
  
 //2. string 
@@ -17,15 +17,15 @@ console.log(added); //prints => 4
 surrounded by single or double quotes. Strings are a primitive data type. They are immutable, which 
 means they are unchanging, although the variable that holds it may be reassigned another value. 
 */
-let sentence = 'My name is Eric.'; 
+var sentence = 'My name is Eric.'; 
 console.log(sentence); prints => 'My name is Eric.' 
  
-let myVar = 'Eric'; 
+var myVar = 'Eric'; 
 myVar.toUpperCase(); 
 console.log(myVar); // prints => ‘Eric’ 
  
-let myVar = 'Eric'; 
-let newVar = myVar.toUpperCase(); 
+var myVar = 'Eric'; 
+var newVar = myVar.toUpperCase(); 
 console.log(newVar); //prints => ‘ERIC’ 
  
 //3. boolean 
@@ -40,10 +40,10 @@ data type and array size is dynamic. You can access and manipulate arrays using 
 notation.  The values are enclosed in square brackets. 
 */
 
-let array = ['a', 'b', 'c']; 
+var array = ['a', 'b', 'c']; 
 console.log(array[1]); //prints => ‘b’ 
  
-let array = ['a', 'b', 'c']; 
+var array = ['a', 'b', 'c']; 
 array[1] = 32;  
 console.log(array); //prints => [‘a’, 32, ‘c’] 
  
@@ -55,14 +55,14 @@ the position of the value in an object.  You can access and manipulate an object
 if you know the name of the key, or bracket notation. Keys are considered strings, so if using 
 bracket notation the key name needs to be wrapped in quotes. The object is enclosed in curly braces. 
 */
-let obj = { 
+var obj = { 
   firstName: 'Eric', 
   lastName: 'Stern' 
 } 
 obj.Name = 'Tom'; 
 console.log(obj['firstName']); //prints => ‘Tom’ 
  
-let obj = { 
+var obj = { 
   firstName: 'Eric', 
   lastName: 'Stern' 
 } 
@@ -96,7 +96,7 @@ add(3, 7); // prints => 10
 is of type undefined. A method or statement also returns undefined if the variable that is being 
 evaluated does not have an assigned value. A function returns undefined if a value was not returned. 
 */
-let name; 
+var name; 
 console.log(name); //prints => undefined 
  
 function add(num1, num2) { 
@@ -165,17 +165,17 @@ that holds it may be reassigned another value. Complex data types, collections, 
 types and values of data within one value. They can contain any number of values. Complex data types include 
 objects, arrays and functions. 
 */
-let firstName = 'Eric'; 
+var firstName = 'Eric'; 
 firstName[1] = 'R'; 
 console.log(name); //prints => ‘Eric’ because primitive values are immutable.  
 //If you wanted to print ‘ERic’ would have to reassign the variable 
  
-let arr = [1, 2, 3, 4]; 
+var arr = [1, 2, 3, 4]; 
 arr.push(5); 
 arr.push(6); 
 console.log(arr); //prints => [1, 2, 3, 4, 5, 6] 
  
-let obj = { 
+var obj = { 
   firstName: 'Eric', 
   lastName: 'Stern' 
 } 
@@ -186,12 +186,12 @@ console.log(obj); //prints  => { firstName: ‘Eric’, lastName: ‘Last Name�
 /* Primitive types are copied by value. Whenever a variable that points to a primitive data type 
 is referenced, a copy of the value that the variable is pointing to is created.  
 */
-let a = 5; 
-let b = a; 
+var a = 5; 
+var b = a; 
 console.log(b); //prints => 5 (the value stored in a is COPIED to b) 
  
-let c = 5; 
-let d = c; 
+var c = 5; 
+var d = c; 
 d = 10; 
 console.log(c); //prints => 5 (changing the value of d doesn’t effect what is stored in c) 
  
@@ -199,8 +199,8 @@ console.log(c); //prints => 5 (changing the value of d doesn’t effect what is 
 is referenced, a copy of the reference that the variable is pointing to is created. When you compare 
 the complex data types you are really comparing the references. 
 */
-let x = { num: 5 }; 
-let y = x; //the value stored in y is a REFERENCE to the value stored in x. They now both point to the same object.
+var x = { num: 5 }; 
+var y = x; //the value stored in y is a REFERENCE to the value stored in x. They now both point to the same object.
 y.num = 10;  
 console.log(x.num); // prints => 10 
 /* changing the value at y affects all references because variable y points to the reference in memory where 
