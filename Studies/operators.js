@@ -10,32 +10,32 @@ operands. Operators are used to compare values and perform arithmetic operations
  
 //1. assignment operator 
 //The simple assignment operator, =, is used to assign value to a variable. 
-let x = 10; 
+var x = 10; 
 console.log(x); prints => 10 
  
 //2. addition assignment operator 
 /* The addition assignment operator, +=, adds a value to a variable and assigns the result to the 
 variable. The types of the two operands determine the behavior of the addition assignment operator. 
 */
-let y = 'Operation '; 
+var y = 'Operation '; 
 y += 'Spark'; 
 console.log(y); //prints => ‘Operation Spark’ 
  
 //3. subtraction assignment operator 
 //The subtraction assignment operator, -=, subtracts a value from a variable and assigns the result to the variable. 
-let num = 10; 
+var num = 10; 
 num -= 4; 
 console.log(num); //prints => 6 
  
 //4. multiplication assignment operator 
 //The multiplication assignment operator, *=, multiplies a variable and assigns the result to the variable. 
-let number = 10; 
+var number = 10; 
 number *= 4; 
 console.log(number); //prints => 40 
  
 //5. division assignment operator 
 //The division assingment operator, /=, divides a variable and assigns the result to the variable. 
-let divide = 10; 
+var divide = 10; 
 divide /= 5; 
 console.log(divide); //prints => 2 
  
@@ -43,13 +43,13 @@ console.log(divide); //prints => 2
 /* The remainder assignment operator, %=, divides a variable by the value of the right operand and 
 assigns the remainder to the variable. 
 */
-let remainder = 10; 
+var remainder = 10; 
 remainder %= 5; 
 console.log(remainder); //prints => 0 
  
 //7. exponential assignment operator 
 //The exponentiation assignment operator, **=, raises a variable to the power of the operand. 
-let exponent = 2; 
+var exponent = 2; 
 exponent **= 3; 
 console.log(exponent); //prints => 8 //2 * 2 * 2 
  
@@ -61,45 +61,45 @@ operation operates on two numbers.
  
 //1. addition operator 
 //The addition operator, +, adds numbers. 
-let x = 5; 
-let y = 2; 
+var x = 5; 
+var y = 2; 
 console.log(x + y); //prints => 7 
  
 //2. subtraction operator 
 //The subtraction operator, -, subtracts numbers. 
-let x = 5; 
-let y = 2; 
+var x = 5; 
+var y = 2; 
 console.log(x - y); //prints => 3 
  
 //3. multiplication operator 
 //The multiplication operator, *, multiplies numbers. 
-let x = 5; 
-let y = 2; 
+var x = 5; 
+var y = 2; 
 console.log(x * y); //prints => 10 
  
 //4. division operator 
 //The division operator, /, divides numbers.  
-let x = 5; 
-let y = 2; 
+var x = 5; 
+var y = 2; 
 console.log(x / y); //prints => 2.5 
  
 //5. exponentiation operator 
 //The exponentiation operator, **, raises the first operand to the power of the second operand. 
-let x = 5; 
-let y = 2; 
+var x = 5; 
+var y = 2; 
 console.log(x ** y); //prints => 25 //5 * 5 
  
 //6. modulus operator  
 //The modulus operator, %, returns the division remainder. 
-let x = 5; 
-let y = 2; 
+var x = 5; 
+var y = 2; 
 console.log(x % y); //prints => 1 // remainder of 1 
  
 //7. increment operator 
 /* The increment operator, ++, increments (adds one to) its operand and returns the value before 
 or after the increment, depending on where the operator is placed. 
 */
-let x = 5; 
+var x = 5; 
 x++; 
 console.log(x); //prints => 6 //5 + 1 
  
@@ -107,7 +107,7 @@ console.log(x); //prints => 6 //5 + 1
 /* The decrement operator, --,  decrements (subracts 1 from) its operand and returns the value before 
 or after the increment, depending on where the operator is placed. 
 */
-let x = 5; 
+var x = 5; 
 x--; 
 console.log(x); //prints => 4 //5 - 1 
  
@@ -119,50 +119,50 @@ expressions. Comparison expressions return either 1, which represents true, or 0
  
 //1. equality operator 
 //The equality operator, ==, returns true if the operands are equal. 
-let x = '34'; 
-let y = 34; 
+var x = '34'; 
+var y = 34; 
 console.log(x == y); //prints => true 
  
 //2. strict equality operator  
 //The strict equality operator, ===, returns true if the operands are true AND of the same type. 
-let x = '34'; 
-let y = 34; 
+var x = '34'; 
+var y = 34; 
 console.log(x === y); //prints => false //false because one is a string and the other a number 
  
 //3. inequality operator 
 //The inequality operator, !=, returns true if the operands are not equal. 
-let x = '34'; 
-let y = 34; 
+var x = '34'; 
+var y = 34; 
 console.log(x != y); //prints => false //false because they are equal 
  
 //4. strict inequality operator 
 //The strict inequality operator, !==, if the operands are not equal AND/OR not of the same type. 
-let x = '34'; 
-let y = 34; 
+var x = '34'; 
+var y = 34; 
 console.log(x !== y); //prints => true //true because they are not of the same type 
  
 //5. greater than operator 
 //The greater than operator, >, returns true if the left operand is greater than the right operand.  
-let x = 10;  
-let y = 2; 
+var x = 10;  
+var y = 2; 
 console.log(x > y); //prints => true 
  
 //6. less than operator 
 //The less than operator, <, returns true if the left operand is less than the right operand. 
-let x = 10;  
-let y = 2; 
+var x = 10;  
+var y = 2; 
 console.log(x < y); //prints => false 
  
 //7. greater than or equal operator 
 //The greater than or equal operator, >=, returns true if the left operand is greater than or equal to the right operand. 
-let x = 10;  
-let y = 10;  
+var x = 10;  
+var y = 10;  
 console.log(x >= y); //prints => true  
  
 //8. less than or equal to operator 
 //The less than or equal to operator, <=, returns true if the left operand is less than or equal to the right operand. 
-let x = 10;  
-let y = 5; 
+var x = 10;  
+var y = 5; 
 console.log(x <= y); //prints => false 
  
 //4. LOGICAL OPERATORS // 
@@ -197,10 +197,10 @@ false. This is because all numbers other than 0 are truthy values. The ! operato
 and NaN returns true, since they are falsey values. 
 */
 
-let a; 
+var a; 
 console.log(!a); // prints => true //true because a is undefined 
  
-let a = 5; 
+var a = 5; 
 console.log(!a); //prints => false 
 
 
@@ -210,11 +210,11 @@ convert it to a number if it isn’t already. It can convert all string represen
 boolean values (true and false), and null to numbers. If the operand cannot be converted into a number, 
 the unary plus operator will return NaN.
 */
-let x = false;
+var x = false;
 console.log(+x); // prints => 0
 
 
-let word = 'word';
+var word = 'word';
 console.log(+word); // prints => NaN
 
 
@@ -222,11 +222,11 @@ console.log(+word); // prints => NaN
 /* The unary negation operator, -, works like the unary plus operator in that it attempts to convert a value 
 to a number, but it then negates it. If the operand cannot be converted into a number, it will return NaN.
 */
-let number = ‘3’;
+var number = '3';
 console.log(-number); // prints => -3
 
 
-let word = ‘bird’;
+var word = 'bird';
 console.log(-word); // prints +. NaN
 
 
@@ -235,7 +235,7 @@ console.log(-word); // prints +. NaN
 can tell you if your value is a string, number, boolean, undefined or a function. The shortcoming of the 
 typeof operator is that an array, an object and null will all return an object datatype.
 */
-let arr = [1, 2, 3, 4];
+var arr = [1, 2, 3, 4];
 console.log(typeof arr); // prints => object (even though it is an array)
 
 
@@ -248,7 +248,7 @@ removes the property from the object. However, deleting an object property that 
 affect the object, but will still return true. The only time false will be returned is when the delete 
 operator is used to delete a variable or a function.
 */
-let fullName = {
+var fullName = {
 	firstName: 'Eric', 
 	lastName: 'Stern'
 }
@@ -261,9 +261,9 @@ console.log(fullName.firstName); // prints => undefined
 A function always returns something. In some situations we do not need to return anything so we must specify 
 void operator in front of the function.
 */
-let numb = void 32;
+var numb = void 32;
 console.log(numb); // prints => undefined
-let animal = void 'elephant';
+var animal = void 'elephant';
 console.log(animal); // prints => undefined
 
 //6. TERNARY OPERATOR (a ? b : c) //
@@ -275,6 +275,6 @@ expression. This expression is executed if the condition expression evaluates to
 the true expression, you have a colon, followed by the false expression. This expression is 
 executed if the condition expression evaluates to false.
 */
-let grade = 80;
-let feedback = grade > 75 ? 'Great job': 'Could improve';
+var grade = 80;
+var feedback = grade > 75 ? 'Great job': 'Could improve';
 console.log(feedback); // prints => ‘Great job’
