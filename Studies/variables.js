@@ -41,7 +41,7 @@ if (bool = true) {
 let otherGreeting = 'Hello';  
 console.log(otherGreeting); // prints => ‘Hello’ 
 } 
-console.log(greeting); // ReferenceError: otherGreeting is not defined 
+console.log(greeting); // prints => ReferenceError: otherGreeting is not defined 
  
 // 6. const keyword 
 /* Variables declared with const maintain constant values. They cannot be redeclared OR reassigned. 
@@ -50,11 +50,11 @@ must be initialized at the time of declaration.
 */
 const color = 'red'; 
 color = 'green'; 
-console.log(color); // Error: Assignment to constant variable 
+console.log(color); // prints => Error: Assignment to constant variable 
  
 const colorTwo = 'red'; 
 const colorTwo= 'green'; 
-console.log(colorTwo); // Error: color has already been declared 
+console.log(colorTwo); // prints => Error: color has already been declared 
  
 // 7. hoisting 
 /* Hoisting is a process where the interpreter loads variable and function declarations 
@@ -69,4 +69,4 @@ console.log(animal); // prints => ‘dog’
  
 animal = 'dog'; 
 let animal; 
-console.log(animal); // ReferenceError: Cannot access ‘animal’ before initialization 
+console.log(animal); // prints => ReferenceError: Cannot access ‘animal’ before initialization 
