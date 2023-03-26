@@ -74,13 +74,20 @@ var youngestCustomer = function(array) {
 };
 
 var averageBalance = function(array) {
-    let balance = _.reduce(array, function(total, current) { 
+    // let balance = _.reduce(array, function(total, current) { 
+    //     //find the total balance and divide by array length
+    //     total += current.balance.replace(/\$/g,'');
+    //     return total / array.length;
+    // }, 0)
+    // return balance; 
+    let t = _.reduce(array, function(total, current) { 
         //find the total balance and divide by array length
-        total += current.balance.replace(/\$/g,'');
-        return total / array.length;
+        var formattedNumber = Number(current.balance.replace("$", "").replace(",", ""))
+        return total + formattedNumber;
     }, 0)
-    return balance;
-
+    // deals with dumb decimal stuff
+    var balance = Math.floor((t / array.length) * 100) / 100;
+    return balance; 
 };
 
 var firstLetterCount = function(array, letter) {
@@ -95,32 +102,47 @@ var firstLetterCount = function(array, letter) {
 
 var friendFirstLetterCount = function(array, customerName, letter) {
     
+    // array contains customers, which are objects
+    // customer object -> friends
+    // First, loop over array to find the customer
+    var matchingCustomer = _.filter(array, function(customer){
+        return customer.name === customerName;
+    })[0];
+    // array[i] is equal to friend here
+    var matches = _.filter(matchingCustomer.friends, function(friend) {
+        return friend.name[0].toUpperCase() === letter.toUpperCase();
+    });
+    // return number of friends
+    return matches.length;
 };
+
+
+var friendsCount = function(array, name) { // name = Duke
+    // add a customer's name to the return array if name is in that customer's friends array
+    var returnArray = _.reduce(array, function(accumulator, current){
+        // accumulator = []
+        // current = array[i], customer object
+        // if current.friends has name in it
+        var nameMatches = _.filter(current.friends, function(friend){
+            // current.friends[i] = friend object
+            return friend.name === name;
+        }) 
+        if (nameMatches.length > 0) {
+            accumulator.push(current.name);
+        }
+        return accumulator;
+    }, []);
+    // return array of customers names
+    return returnArray;
+};
+
+var topThreeTags ;
 
 /*
- - **Objective**: Find how many friends of a given customer have names that start with a given letter
- - **Input**: `Array`, `Customer`, `Letter`
- - **Output**: `Number`
- */
-
-var friendsCount = function(array, name) {
-    let friends = _.reduce(function(accumulator, current) {
-        for (let i = 0; i < current.friends.length; i++) {
-            if (current.friends[i].includes(name)) {
-                accumulator.push(current.name);
-            }
-        }
-    }, []);
-    return friends;
-};
-
-/*### 8: `friendsCount`
- - **Objective**: Find the customers' names that have a given customer's name in their friends list
- - **Input**: `Array`, `Name`
- - **Output**: `Array`
- */
-
-var topThreeTags;
+- **Objective**: Find the three most common tags among all customers' associated tags
+- **Input**: `Array`
+- **Output**: `Array`
+*/
 
 var genderCount;
 
