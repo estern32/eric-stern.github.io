@@ -74,19 +74,13 @@ var youngestCustomer = function(array) {
 };
 
 var averageBalance = function(array) {
-    // let balance = _.reduce(array, function(total, current) { 
-    //     //find the total balance and divide by array length
-    //     total += current.balance.replace(/\$/g,'');
-    //     return total / array.length;
-    // }, 0)
-    // return balance; 
-    let t = _.reduce(array, function(total, current) { 
-        //find the total balance and divide by array length
+    let totalBalance = _.reduce(array, function(accumulator, current) { 
+        //format to a number
         var formattedNumber = Number(current.balance.replace("$", "").replace(",", ""))
-        return total + formattedNumber;
+        return accumulator + formattedNumber;
     }, 0)
-    // deals with dumb decimal stuff
-    var balance = Math.floor((t / array.length) * 100) / 100;
+    // find average balance
+    var balance = Math.floor((totalBalance / array.length) * 100) / 100;
     return balance; 
 };
 
@@ -101,11 +95,8 @@ var firstLetterCount = function(array, letter) {
 };
 
 var friendFirstLetterCount = function(array, customerName, letter) {
-    
-    // array contains customers, which are objects
-    // customer object -> friends
-    // First, loop over array to find the customer
     var matchingCustomer = _.filter(array, function(customer){
+        //if a customer is customer name
         return customer.name === customerName;
     })[0];
     // array[i] is equal to friend here
@@ -117,7 +108,7 @@ var friendFirstLetterCount = function(array, customerName, letter) {
 };
 
 
-var friendsCount = function(array, name) { // name = Duke
+var friendsCount = function(array, name) { 
     // add a customer's name to the return array if name is in that customer's friends array
     var returnArray = _.reduce(array, function(accumulator, current){
         // accumulator = []
@@ -136,15 +127,69 @@ var friendsCount = function(array, name) { // name = Duke
     return returnArray;
 };
 
-var topThreeTags ;
+var topThreeTags = function(array) {
+    var tagsObj = _.reduce(array, function(accumulator, current) {
+        current.tags.forEach(function(tag) {
+            if (accumulator[tag]) {
+                accumulator[tag] += 1;
+            } else {
+                accumulator[tag] = 1;
+            }
+        });
+        return accumulator;
+    }, {});
+    var entries = Object.entries(tagsObj);
+    var sorted = entries.sort(function(previous, current){
+        return current[1] - previous[1];
+    });
+    let arr = [sorted[0][0], sorted[1][0], sorted[2][0]]
+    return arr;
+    //return an array of the 3 most common tags
+};
 
 /*
 - **Objective**: Find the three most common tags among all customers' associated tags
 - **Input**: `Array`
 - **Output**: `Array`
 */
+ 
+var genderCount = function(array) {
+    let genderObj = _.reduce(array, function(accumulator, current) {
+        //iterate through current customers gender
+        //determine if gender exists in accumulator as a key
+        // current.gender = 'female'
+        // accumulator = {}
+        // if (gender not in accumulator) {
+        //     accumulator[current.gender] = 1;
+        // } else {
+            // accumulator[current.gender] += 1;
+        // }
 
-var genderCount;
+
+        if (accumulator[current.gender]) {
+            accumulator[current.gender] += 1;
+        } else {
+            accumulator[current.gender] = 1;
+        }
+        return accumulator;
+    }, {});
+    //return object
+    return genderObj;
+};
+
+
+/*- **Objective**: Create a summary of genders, the output should be:
+```javascript
+{
+    male: 3,
+    female: 4,
+    non-binary: 1
+}
+```
+ - **Input**: `Array`
+ - **Output**: `Object`
+ - **Constraints**: Use `reduce`
+ */
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
