@@ -462,11 +462,20 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj, output = {}) {
+var letterTally = function(str, obj = {}) {
   //base
-
-  //
-  if (str[0] )
+  if (str.length === 0) {
+    return obj;
+  }
+  //if obj[str[0]] exists add 1,
+  if (obj[str[0]]) {
+    obj[str[0]] += 1;
+    //if not, create it with a value of 1
+  } else {
+    obj[str[0]] = 1;
+  }
+  //call function with first character of str removed
+  return letterTally(str.slice(1), obj);
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -545,12 +554,29 @@ var alternateSign = function(array, output = []) {
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str, output1 = [], output2 = '') {
-  let arr = str.split(' ');
-  if (arr.length === 0) {
-    output2 = arr.join(' ');
+var numToText = function(str, output = '') {
+  //create array of number word strings 
+  let numWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  //split string to array
+  let strArr = str.split(' ');
+  //create a string for callback function
+  var backToStr = (strArr.slice(1)).join(' ');
+  //base
+  if (str.length === 0) {
+    return output;
   }
-  
+  // if first element in strArr is a number add the word equivalent to output
+  if (Number(strArr[0]) > 0) {
+    output += (numWords[Number(strArr[0])] + ' ');
+    //if strArr[0] is last element add it to output without a space at the end
+  } else if (strArr[0] === strArr[strArr.length -1]) {
+    output += strArr[0];
+    //else add it to output with a space at the end
+  } else {
+    output += (strArr[0] + ' ');
+  }
+  //call function until no more characters
+  return numToText(backToStr, output);
 
 };
 
