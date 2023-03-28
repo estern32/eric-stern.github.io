@@ -2,31 +2,78 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
-
+function range(start, end, step) {
+  //if start is end return empty array
+  if (start === end) {
+    return [];
+  }
+  //if step is undefined
+  if (step === undefined) {
+  let rangeArray=[];
+  for(let i = start; i <= end; i++){
+   rangeArray.push(i);
+  }
+  return rangeArray;
+ } else {
+ }
+ let rangeArray = [];
+ if(step > 0){
+   for(let i = start; i <= end; i += step){
+     rangeArray.push(i);
+   }
+ }
+ else if(step < 0) {
+   for(let i = start; i >= end; i += step){
+     rangeArray.push(i);
+   }
+ }
+ else {
+    for(let i = start; i <= end; i++){
+     rangeArray.push(i);
+   }    
+ }
+ return rangeArray;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
+function sum(array) {
+  let sum = 0;
+  array.forEach((i)=>{
+   sum += i;
+  })
+  return sum;
 
+  //returns sum of the numbers in array
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
-
+function reverseArray(arr) {
+  let reversed = [];
+  //go through values of arr in reverse and push them into new array
+  for (let i = arr.length-1; i >= 0; i--){
+       reversed.push(arr[i]); 
+  }
+   return reversed;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
+function reverseArrayInPlace(arr) {
+	var originalLength = Math.floor(arr.length / 2); 
+  //swap the first with last, second with second to last, and so on
+ 	for(var i = 0, j = arr.length-1-i; i < originalLength; i++, j--){
+      var swap = arr[i];
+  		arr[i] = arr[j];
+      arr[j] = swap;
+  }
 
 }
 
@@ -34,40 +81,86 @@ function reverseArrayInPlace() {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-
+function arrayToList(array) {
+  let rest = null;
+  for (let i = array.length - 1; i >= 0; i--) {
+    rest = { value: array[i], rest: rest };
+  }
+  return rest;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(list, array = []) {
+  //base
+  if (list.rest === null) {
+    array.push(list.value);
+    return array;
+  }
+  //push value at value property to array
+  array.push(list.value);
+  //return function all on the rest of object
+  return listToArray(list.rest, array);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
-
+function prepend(value, rest) {
+  //add value to the front of the list
+  let list = {
+    value: value,
+     rest: rest
+   }
+   return list;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
-
+function nth(list, num) {
+  if (!list) {
+    return undefined;
+  } else if (num === 0) {
+    return list.value;
+  } else {
+    return nth(list.rest, num - 1);
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
-
+function deepEqual(x, y) {
+  //detemine if x and y are BOTH not considered objects
+  //we still want simple data type compared like usual
+  if (typeof x !== 'object' && typeof y !== 'object') {
+    return x === y;
+  }
+  //determine if x OR y is not an object
+  //if one is an object and the other isn't they are not ===
+  if (typeof x !== 'object' || typeof y !== 'object'){
+    return false;
+  }
+  //if x and y are BOTH complex data types
+  let xKeys = Object.keys(x);
+  let yKeys = Object.keys(y);
+  //determine if the lengths are not equal
+  if (xKeys.length !== yKeys.length) {
+    return false
+  }
+  //iterate through the array of keys to make sure the keys and values match
+  for (let i = 0; i < xKeys.length; i++) {
+    if (!yKeys.includes(xKeys[i]) || !deepEqual(x[xKeys[i]], y[xKeys[i]])) {
+      return false;
+    }
+  }
+  return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

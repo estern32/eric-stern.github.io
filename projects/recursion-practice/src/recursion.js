@@ -575,7 +575,7 @@ var numToText = function(str, output = '') {
   } else {
     output += (strArr[0] + ' ');
   }
-  //call function until no more characters
+  //call function until no more characters remaining
   return numToText(backToStr, output);
 
 };
