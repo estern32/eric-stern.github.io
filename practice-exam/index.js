@@ -130,14 +130,15 @@ assign a copy of our `filterSpecies` array to our `dogContestants` variable.
 
 // 5. 
 var dogsWithClasses = dogContestants.map(function(dog) {
-    if (dog.weight >= 0 && dog.weight <= 10) {
-        return dog.class = 'red';
-    } else if (dog.weight >= 11 && dog.weight <= 20) {
-        return dog.class = 'yellow';
-    } else if (dog.weight >= 21) {
-        return dog.class = 'green';
+    if (dog.weight >= 21) {
+        dog.class = 'green';
+    } else if (dog.weight >= 11) {
+        dog.class = 'yellow';
+    } else if (dog.weight >= 0) {
+        dog.class = 'red';
     }
-});
+    return dog;
+})
 
 /*5. Now that we have our `dogContestants` array, we need to add a `class` property to each dog object.
     Using the native map method, add a key of `class` with the value:
@@ -150,8 +151,14 @@ var dogsWithClasses = dogContestants.map(function(dog) {
 
 // 6. // want all objects combined to one
 var firstInClass = function(array, output = {}) {
-
-};
+    //base
+    if (array.length === 0) {
+        return output;
+    }
+    //
+    Object.assign(output, array[0]);
+    return firstInClass(array.slice(1), output);
+}
 
 /*
 6. The votes are in! We have an array of the top dogs in each class
@@ -162,9 +169,9 @@ var firstInClass = function(array, output = {}) {
 
 // 7.
 var votes = dogs.reduce(function(accumulator, current) {
-    accumulator += current.votes;
-    return accumulator;
-}, 0);
+    return accumulator += current.votes;
+
+}, 0)
 
 /*
 7. For statistical reasons, lets count all of the votes we recieved for our dog and non-dog contestants!

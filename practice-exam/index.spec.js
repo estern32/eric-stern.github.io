@@ -93,7 +93,7 @@ describe('The Unoffical Bootcamp Exam for Planet Earth', function () {
     describe('dogsWithClasses', function () {
         it(`should have an added property of "class"`, function () {
             dogsWithClasses.forEach(dog => {
-                dog.should.have.property('class');
+                dog.should.have.property('class'); 
             })
         });
         it(`should have the correct amount of dogs in each class`, function () {
