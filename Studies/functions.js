@@ -95,6 +95,8 @@ console.log(a); // prints => 5 (because variable a is global scope)
 console.log(b); // prints => ReferenceError: b is not defined (b only available inside the function)
 
 
+
+
 //6. closure
 /* A function definition can carry within its body references to variables in its parent scope. This 
 is called closure. The function definition forms a closure around the environment in which it was defined. 
