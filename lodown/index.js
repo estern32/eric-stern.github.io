@@ -40,7 +40,7 @@ module.exports.identity = identity;
  * TypeOf: Function takes any value and returns the type of value as a string.
  * 
  * @param { Any value } value: Function takes in any value.
- * @returns { String }: Function returns value as a string.
+ * @returns { String }: Function returns the datatype of the value as a string.
  */
 
 function typeOf(value) {
@@ -62,7 +62,7 @@ module.exports.typeOf = typeOf;
  * 
  * @param { Array } array: The array containing the items to be returned.
  * @param { Number } number: The number of items of array to return.
- * @returns: If array is not an array, return []. If number is not given or not a number, 
+ * @returns { Any datatype that can be stored in an array }: If array is not an array, return []. If number is not given or not a number, 
  * return just the first element in array. Otherwise, return the first number items of array.
  */
 
@@ -83,7 +83,7 @@ module.exports.first = first;
  * 
  * @param { Array } array: The array over which to iterate.
  * @param { Number } number: The number of items of array to return.
- * @returns: If array is not an array, return []. If number is not given or not a number, 
+ * @returns { Any datatype that can be stored in an array }: If array is not an array, return []. If number is not given or not a number, 
  * return just the last element in array. Otherwise, return the last number items of array.
  */
 
@@ -108,7 +108,7 @@ module.exports.last = last;
  * 
  * @param { Array } array: The array over which to iterate.
  * @param { Value } value: The value to be checked when iterating through array.
- * @returns: Returns the index of array that is the first occurrence of value. 
+ * @returns { Number }: Returns the index of array that is the first occurrence of value. 
  * Returns -1 if value is not in array.
  */
 
@@ -132,7 +132,7 @@ module.exports.indexOf = indexOf;
  * 
  * @param { Array } array: The array to be checked for value. 
  * @param { Value } value: The value to be checked when iterating through array.
- * @returns: Returns true if array contains value, false otherwise.
+ * @returns { Boolean }: Returns true if array contains value, false otherwise.
  */
 
 function contains(array, value) {
@@ -169,7 +169,7 @@ module.exports.each = each;
  * from array with duplicates removed.
  * 
  * @param { Array } array: The array over which to iterate.
- * @returns: Returns a new array of all elements from array with duplicates removed
+ * @returns { Array }: Returns a new array of all elements from array with duplicates removed
  */
 
 function unique(array) {
@@ -191,7 +191,7 @@ module.exports.unique = unique
  * 
  * @param { Array } array: The array over which to iterate. 
  * @param { Function } func: The function that is called for each element of array.
- * @returns: Returns a new array of elements for which calling func returned true.
+ * @returns { Array }: Returns a new array of elements for which calling func returned true.
  */
 
 function filter(array, func) {
@@ -213,7 +213,7 @@ module.exports.filter = filter;
  * 
  * @param { Array } array: The array over which to iterate.
  * @param { Function } func: The function that is called for each element of array.
- * @returns: Returns a new array of elements for which calling func returned false.
+ * @returns { Array }: Returns a new array of elements for which calling func returned false.
  */
 
 function reject(array, func) {
@@ -237,7 +237,7 @@ module.exports.reject = reject;
  * 
  * @param { Array } array: The array over which to iterate.
  * @param { Function } func: The function that is called for each element in array.
- * @returns: Returns a new array that is made up of two sub arrays, one for truthy
+ * @returns { Array }: Returns a new array that is made up of two sub arrays, one for truthy
  * values and the other for falsy values.
  */
 
@@ -262,7 +262,7 @@ module.exports.partition = partition;
  * 
  * @param { Array or Object } collection: The array or object over which to iterate. 
  * @param { Function } func: The function that is called for each element in collection.
- * @returns: Returns a new array containing the return values of each function call.
+ * @returns { Array }: Returns a new array containing the return values of each function call.
  */
 
 function map(collection, func) {
@@ -287,7 +287,7 @@ module.exports.map = map;
  * 
  * @param { Array } array: Array of objects containing properties.
  * @param { Property } prop: Property in an element in array.
- * @returns: Returns a new array containing the value of property for every 
+ * @returns { Array }: Returns a new array containing the value of property for every 
  * element in array
  */
 
@@ -308,7 +308,7 @@ module.exports.pluck = pluck;
  * 
  * @param { Array or Object } collection: The array or object over which to iterate.
  * @param { Function } func: The function that is called for every element in collection.
- * @returns: Returns true if the return value for calling function for every element is 
+ * @returns { Boolean }: Returns true if the return value for calling function for every element is 
  * truthy, otherwise returns false.
  */
 
@@ -354,7 +354,7 @@ module.exports.every = every;
  * 
  * @param { Array or Object } collection: The array or object over which to iterate.
  * @param { Function } func: The function that is called for every element in collection.
- * @returns: Returns false if the return value for calling function for every element is 
+ * @returns { Boolean }: Returns false if the return value for calling function for every element is 
  * falsy, otherwise returns true.
  */
 
@@ -403,7 +403,7 @@ module.exports.some = some;
  * @param { Array } array: The array over which to iterate.
  * @param { Function } func: The function called for every element in collection.
  * @param { Value } seed: Value used as the previous result for the first iteration.
- * @returns: Returns the return value of the final function call.
+ * @returns { String, Number, Array, Object }: Returns the return value of the final function call.
  */
 
 function reduce(array, func, seed) {
@@ -432,7 +432,7 @@ module.exports.reduce = reduce;
  * @param { Object } object2: The object whose properties are copied to object 1.
  * @param  { ...possibly more object } moreObjects: Possible objects passed in also whose 
  * properties are copied to object 1.
- * @returns: Returns the updated object 1.
+ * @returns { Object }: Returns the updated object 1.
  */
 
 function extend(object1, object2, ...moreObjects) {
