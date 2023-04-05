@@ -94,7 +94,13 @@ console.log(number()); // prints => 2
 console.log(a); // prints => 5 (because variable a is global scope)
 console.log(b); // prints => ReferenceError: b is not defined (b only available inside the function)
 
-
+//Functions can modify variables from the global scope
+let bigCat = 'tiger'; //global variable
+function newAnimal() {
+  bigCat = 'jaguar';
+}
+newAnimal();
+console.log(bigCat); // prints => 'jaguar'
 
 
 //6. closure
